@@ -1,0 +1,19 @@
+mixin loginForm()
+    form(method="post" action="/login")
+        div
+            label(for="email") Email
+            input(type="email" name="email" placeholder="Email")
+        div
+            label(for="password") Password
+            input(type="password" name="password" placeholder="Password")
+
+        button(type="submit") Log In
+        br
+        p Don't have an account?
+        a(href="/register") Register Now
+
+        if (errors)
+            - var err = errors.map(error => error)
+            for error in err
+                ul
+                    li= error.msg

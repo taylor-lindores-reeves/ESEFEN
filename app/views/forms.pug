@@ -1,0 +1,9 @@
+extends layout
+include mixins/forms/_registerForm
+include mixins/forms/_loginForm
+block content
+  if !user
+    if id === 'registerForm'
+      +registerForm()
+    else if id === 'loginForm'
+      +loginForm()

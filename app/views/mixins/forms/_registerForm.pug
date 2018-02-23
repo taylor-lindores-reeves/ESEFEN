@@ -1,0 +1,27 @@
+mixin registerForm()
+    form(method="post" action="/register")
+        div
+            label(for="name") Name
+            input(type="text" name="name" placeholder="Name")
+        div
+            label(for="email") Email
+            input(type="email" name="email" placeholder="Email")
+        div
+            label(for="password") Password
+            input(type="password" name="password" placeholder="Password")
+        div
+            label(for="password-confirm") Confirm Password
+            input(type="password" name="confirm" placeholder="Confirm Password")
+        div
+            label(for="admin") Administrator Access Code
+            input(type="password" name="adminCode" placeholder="Administrator Access Code")
+        button(type="submit") Register 
+        br
+        p Have an account?
+        a(href="/login") Login Now
+
+        if (errors)
+            - var err = errors.map(error => error)
+            for error in err
+                ul
+                    li= error.msg

@@ -1,0 +1,9 @@
+extends email-layout
+
+block content
+  h2 Account Verification
+  p Hello. You have registered an account for ESEFEN. Please click the following button to verify your email. Please note this link is only valid for 12 hours.
+  +button(verifyURL, 'Verify My Email →')
+  p If you can't click the above button please visit #{verifyURL}
+  br
+  p If you didn't request this email, please ignore it.

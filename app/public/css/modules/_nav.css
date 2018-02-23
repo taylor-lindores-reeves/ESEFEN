@@ -1,0 +1,23 @@
+.c-nav {
+  background: linear-gradient(to right, yellow, blue);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    padding: 10px;
+    font-size: 36px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  &__item {
+    padding: 10px;
+    font-size: 24px;
+  }
+}

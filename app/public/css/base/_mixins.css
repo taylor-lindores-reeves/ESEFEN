@@ -1,0 +1,29 @@
+@define-mixin atiPhoneFive {
+  @media only screen and (min-width: 640px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin atiPhoneSix {
+  @media only screen and (min-width: 750px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin atMinimum {
+  @media only screen and (min-width: 1024px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin atCommon {
+  @media only screen and (min-width: 1366px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin atLarge {
+  @media only screen and (min-width: 1920px) {
+    @mixin-content;
+  }
+}

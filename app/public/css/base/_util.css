@@ -1,0 +1,29 @@
+.o-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @mixin atiPhoneFive {
+        margin-left: 20px;
+        margin-right: 20px;
+    } 
+
+    @mixin atiPhoneSix {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    @mixin atMinimum {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    @mixin atCommon {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    @mixin atLarge {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}
