@@ -27,10 +27,20 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isLoggedIn: {
+    type: Boolean,
+    createdAt: { type: Date, expires: 1800, default: Date.now }
+  },
   token: String,
-  profilePicture: String,
+  photo: String,
   resetPasswordToken: String,
   resetPasswordExpires: Date
+});
+
+userSchema.index({
+  name: 'text',
+  email: 'text',
+  isVerified: 'text'
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

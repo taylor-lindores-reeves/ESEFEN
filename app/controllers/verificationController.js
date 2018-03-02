@@ -15,10 +15,10 @@ exports.isVerified = async (req, res, next) => {
         res.redirect('/register')
     }
     if (!user.isVerified && user.isAdmin) {
-        req.flash('error', 'You need to verify your email address first! <a href="/resend">Click here to resend a verification link.</a>');
+        req.flash('error', 'You tried logging in as an administrator. You need to verify your email address first. <a href="/resend">Click here to resend a verification link.</a>');
         res.redirect('/login')
     } else if (!user.isVerified) {
-        req.flash('error', 'You need to verify your email address first!');
+        req.flash('error', 'You need to get an administrator to verify your email address before you can log in!');
         res.redirect('/login')
     } else {
         return next();

@@ -1,0 +1,22 @@
+extends layout
+block content
+    each user in users
+        h1(id="simple" class=`${user._id}`)= `Name: ${user.name}, Email: ${user.email}`
+            ul(id="attributes" style="width: 100%; text-align: center;")
+    
+append scripts
+    script.
+        const board = 'board';
+        const socket = io('/board')
+
+        socket.on('connect', () => {
+            // emitting to everybody
+            socket.emit('join', {board})
+        })
+
+        socket.on('user', (data) => {
+            const element = $(`.${data.user}`);
+            if (element) {
+                element.append($('<li>').text(data.attr)) 
+            }
+        }) 

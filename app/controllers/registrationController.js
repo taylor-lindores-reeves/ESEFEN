@@ -24,7 +24,7 @@ exports.validateRegister = async (req, res, next) => {
         gmail_remove_subaddress: false
     });
 
-    req.checkBody('password', 'Password cannot be blank!').notEmpty();
+    req.checkBody('password', 'Password has to be a minimum of 6 characters!').notEmpty().isLength({ min: 6 });
     req.checkBody('confirm', 'Passwords do not match').equals(req.body.password);
     
     let errors = req.validationErrors();
@@ -41,7 +41,7 @@ exports.register = async (req, res, next) => {
     const userEmail = await User.findOne({ email: req.body.email });
     if(userEmail) {
         const forgotURL = `http://${req.headers.host}/forgot`;
-        req.flash('failure', `An account with that email already exists. <a href="${forgotURL}">Forgotten your password?</a>`)
+        req.flash('error', `An account with that email already exists. <a href="${forgotURL}">Forgotten your password?</a>`)
         return res.redirect('/login');
     }
  
@@ -51,11 +51,10 @@ exports.register = async (req, res, next) => {
 
     if (admin) {
         user.isAdmin = true;
-        req.flash('info', 'You now have administrator privileges!')
     } else if (req.body.adminCode === '') {
         
     } else {
-        req.flash('failure', 'Incorrect administrator access code!');
+        req.flash('error', 'Incorrect administrator access code!');
         return res.redirect('back')
     }
 

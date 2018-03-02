@@ -1,10 +1,9 @@
 const express = require('express');
-const { catchErrors } = require('../handlers/errorHandlers');
 const mongoose = require('mongoose');
-const registrationController = require('../controllers/registrationController');
+const { catchErrors } = require('../handlers/errorHandlers');
 const authController = require('../controllers/authController');
 const verificationController = require('../controllers/verificationController');
-const adminController = require('../controllers/adminController');
+const registrationController = require('../controllers/registrationController');
 const router = express.Router();
 
 router.get('/', (req, res) => { res.render('index') });
@@ -29,24 +28,10 @@ router.post('/account/verify/:token', catchErrors(verificationController.confirm
 router.get('/login', authController.loginForm); 
 router.post( '/login',
     catchErrors(verificationController.isVerified),
+    catchErrors(authController.logInStatus),
     authController.login
 );
 
-router.get('/logout', authController.logout)
-
-
-// custom 404 page
-router.use((req, res) => {
-    res.status(404);
-    res.render('404');
-});
-
-// custom 500 page
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500);
-    res.render('500');
-});
-
+router.get('/logout', authController.logout);
 
 module.exports = router;

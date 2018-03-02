@@ -11,26 +11,57 @@ exports.loginForm = (req, res) => {
 };
 
 exports.login = passport.authenticate('local', {
-    failureRedirect: '/',
+    failureRedirect: '/login',
     failureFlash: 'Failed to log in!',
     successRedirect: '/',
-    successFlash: 'You\'ve successfully logged in'
+    successFlash: 'Welcome'
 });
 
+exports.logInStatus = async (req, res, next, err) => {
+    await User.findOneAndUpdate(
+        {email: req.body.email, isLoggedIn: false},
+        {$set: {isLoggedIn: true}}
+    )
+    next();
+};
+
 exports.logout = (req, res) => {
-    req.logout();
-    req.flash('success', 'You\'ve successfully logged out!');
-    res.redirect('/')
+    if (!req.isAuthenticated()) {
+        res.redirect('/login');
+    } else {
+        User.findOne({email: req.session.passport.user}, function(err, user, data) {
+            if(err) res.send(err);
+            user.isLoggedIn = false; 
+            user.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+        req.logout();
+        req.flash('success', 'You\'ve successfully logged out!');
+        res.redirect('/login');
+    } 
 };
 
-exports.isLoggedIn = (req, res, next) => {
-    if(req.isAuthenticated()) {
-        return next();
+exports.isAuthenticated = async (req, res, next, err) => {
+    if (req.isAuthenticated()) {
+       next();
+    } else {
+        req.flash('error', 'Failed authentication!')
+        res.redirect('/login')
     }
-
-    req.flash('error', 'Oops! You need to log in to do that!');
-    res.redirect('/login');
 };
+
+
+// exports.isAuthenticated = (req, res) => {
+//     if(req.isAuthenticated()) {
+//         return next();
+//     }
+
+//     req.flash('error', 'Oops! You need to log in to do that!');
+//     res.redirect('/login');
+// }
 
 // exports.forgotURL = (req, res) => {
 //     if (req.user) {

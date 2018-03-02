@@ -11,15 +11,14 @@ const flash = require('connect-flash');
 const pug = require('pug');
 const errorHandlers = require('./handlers/errorHandlers');
 const index = require('./routes/index');
+const admin = require('./routes/admin');
 const users = require('./routes/users');
 require('./handlers/passport');
 const app = express();
 
-
 // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-
 
 // Setting the templating engine to pug and declaring where express looks for cdertain files
 app.engine('pug', require('pug').__express)
@@ -60,8 +59,8 @@ app.use((req, res, next) => {
 
 // Route handlers
 app.use('/', index);
-app.use('/users', users); 
-
+app.use('/admin', admin);
+app.use('/users', users);
 
 // Error handlers
 app.use(errorHandlers.notFound);
@@ -70,5 +69,6 @@ app.use(errorHandlers.productionErrors);
 if (app.get('env') === 'development') { app.use(errorHandlers.developmentErrors); }
 
 require('./handlers/mail');
+
 // Exports this file for use anywhere else in the file architecture
 module.exports = app;
