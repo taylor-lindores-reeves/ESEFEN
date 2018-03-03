@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/node_modules": true,
+    "**/.vscode": true,
+    "**/.eslintrc.json": true,
+    "**/package-lock.json": true,
+    "**/variables.env": true
+  }
+}

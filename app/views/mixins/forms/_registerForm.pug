@@ -1,27 +1,29 @@
 mixin registerForm()
-    form(method="post" action="/register")
-        div
-            label(for="name") Full Name
-            input(type="text" name="name" placeholder="Name")
-        div
-            label(for="email") Email
-            input(type="email" name="email" placeholder="Email")
-        div
-            label(for="password") Password
-            input(type="password" name="password" placeholder="Password")
-        div
-            label(for="password-confirm") Confirm Password
-            input(type="password" name="confirm" placeholder="Confirm Password")
-        div
-            label(for="admin") Administrator Access Code
-            input(type="password" name="adminCode" placeholder="Administrator Access Code")
-        button(type="submit") Register 
-        br
-        p Have an account?
-        a(href="/login") Login Now
+    .auth-wrapper
+        .auth-box
+            .auth-box__inner
+                a(href="/")
+                    img(src="/images/uploads/851de599-9081-4697-a593-e881e5926eec.jpeg", alt="" width="70").auth-box__image
+                form(method="post" action="/register")
+                    .auth-box__col
+                        .auth-inputs
+                            .auth-inputs
+                                label(for="name").auth-inputs__lab Name:
+                                input(type="text" name="name").auth-inputs__put
 
-        if (errors)
-            - var err = errors.map(error => error)
-            for error in err
-                ul
-                    li= error.msg
+                                label(for="email").auth-inputs__lab Email:
+                                input(type="email" name="email").auth-inputs__put
+                                
+                                label(for="password").auth-inputs__lab Password:
+                                input(type="password" name="password").auth-inputs__put
+
+                                label(for="password-confirm").auth-inputs__lab Confirm Password:
+
+                                input(type="password" name="confirm").auth-inputs__put
+                                label(for="admin").auth-inputs__lab Administrator Access Code:
+                                input(type="password" name="adminCode").auth-inputs__put
+                        
+                    button(type="submit").auth-btn Register
+                    
+        .auth-footer
+            p Have an account? <a href="/login"> Sign in</a>

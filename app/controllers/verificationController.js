@@ -21,6 +21,7 @@ exports.isVerified = async (req, res, next) => {
         req.flash('error', 'You need to get an administrator to verify your email address before you can log in!');
         res.redirect('/login')
     } else {
+        console.log('is verified')
         return next();
     }
 };

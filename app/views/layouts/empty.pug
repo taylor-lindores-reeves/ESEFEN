@@ -1,0 +1,27 @@
+include ../mixins/_avatarDisplay
+doctype html
+html(lang="en")
+    head
+        block head
+            title Dot App
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="/styles/styles.bundle.css">
+    body
+        block header
+
+        block messages
+            if locals.flashes
+                .inner
+                    .flash-messages
+                        - const categories = Object.keys(locals.flashes)
+                        each category in categories
+                            each message in flashes[category]
+                                .flash(class=`flash--${category}`)
+                                    p.flash__text!= message
+                                    button.flash__remove(onClick="this.parentElement.remove()") &times;
+        block content
+
+        block scripts 
+            script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")

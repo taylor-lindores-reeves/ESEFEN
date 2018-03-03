@@ -4,9 +4,10 @@ const { catchErrors } = require('../handlers/errorHandlers');
 const authController = require('../controllers/authController');
 const verificationController = require('../controllers/verificationController');
 const registrationController = require('../controllers/registrationController');
+const home = require('./controllers/home');
 const router = express.Router();
 
-router.get('/', (req, res) => { res.render('index') });
+router.get('/', home);
 
 // ------------ REGISTRATION CONTROLLER ------------- //
 

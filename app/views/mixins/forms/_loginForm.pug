@@ -1,19 +1,22 @@
 mixin loginForm()
-    form(method="post" action="/login")
-        div
-            label(for="email") Email
-            input(type="email" name="email" placeholder="Email")
-        div
-            label(for="password") Password
-            input(type="password" name="password" placeholder="Password")
 
-        button(type="submit") Log In
-        br
-        p Don't have an account?
-        a(href="/register") Register Now
+    .auth-wrapper
+        .auth-box
+            .auth-box__inner
+                a(href="/")
+                    img(src="/images/uploads/851de599-9081-4697-a593-e881e5926eec.jpeg", alt="" width="70").auth-box__image
+                form(method="post" action="/login")
+                    .auth-box__col
+                        .auth-inputs
+                            .auth-inputs
+                                label(for="email").auth-inputs__lab Email:
+                                input(type="email" name="email").auth-inputs__put
+                                
+                                label(for="password").auth-inputs__lab Password:
+                                input(type="password" name="password").auth-inputs__put
 
-        if (errors)
-            - var err = errors.map(error => error)
-            for error in err
-                ul
-                    li= error.msg
+                        
+                    button(type="submit").auth-btn Sign In
+                    
+        .auth-footer
+            p Don'y have an account? <a href="/register"> Register Now</a>

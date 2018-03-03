@@ -18,11 +18,15 @@ exports.login = passport.authenticate('local', {
 });
 
 exports.logInStatus = async (req, res, next, err) => {
-    await User.findOneAndUpdate(
-        {email: req.body.email, isLoggedIn: false},
+    const user = await User.findOneAndUpdate(
+        {email: req.body.email},
         {$set: {isLoggedIn: true}}
     )
+
+    console.log(user)
+
     next();
+    return;
 };
 
 exports.logout = (req, res) => {
@@ -52,16 +56,6 @@ exports.isAuthenticated = async (req, res, next, err) => {
         res.redirect('/login')
     }
 };
-
-
-// exports.isAuthenticated = (req, res) => {
-//     if(req.isAuthenticated()) {
-//         return next();
-//     }
-
-//     req.flash('error', 'Oops! You need to log in to do that!');
-//     res.redirect('/login');
-// }
 
 // exports.forgotURL = (req, res) => {
 //     if (req.user) {
@@ -137,4 +131,3 @@ exports.isAuthenticated = async (req, res, next, err) => {
 //     req.flash('success', 'Your password has been reset! You are now logged in.');
 //     res.redirect('/list')
 // };
-

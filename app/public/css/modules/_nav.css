@@ -1,9 +1,12 @@
 .c-nav {
-  background: linear-gradient(to right, yellow, blue);
+  background: linear-gradient(to right, yellow, green);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  float: right;
+  width: 350px;
+  height: 100vh;
 
   &__logo {
     padding: 10px;
@@ -12,7 +15,8 @@
 
   &__list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
   }
 

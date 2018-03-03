@@ -50,6 +50,15 @@ server.listen(app.get('port'), () => {
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
 
-// RESEND VERIFICATION LINK
-// FORGOTTEN PASSWORD
-// HOW TO MAKE DIFFERENT USERS JOIN DIFFERENT ROOMS BASED ON THEIR CREDENTIALS OR RELATIONSHIP WITH ADMIN
+
+// SERVER
+// 1. resend a verification link functionality
+// 2. add forgotted password functionality
+// 3. enable users to join different rooms and admins based on some criteria
+// 4. let admins see all users currently in their session
+// 5. use the keystone way to render views. looks good.
+
+
+// STYLE
+// 1. style the header
+// 2. use res.locals to display stuff
