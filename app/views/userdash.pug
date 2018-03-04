@@ -1,0 +1,7 @@
+extends ./layouts/user
+block content
+    if user
+        h1 USER DASH
+        form(action="/users/photo" method="post" enctype="multipart/form-data")
+            input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+            input(type="submit" value="Update Photo")

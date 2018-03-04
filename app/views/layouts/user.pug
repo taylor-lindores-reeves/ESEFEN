@@ -1,0 +1,53 @@
+include ../mixins/_avatarDisplay
+doctype html
+html(lang="en")
+    head
+        block head
+            title Dot App
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="/temp/styles/styles.bundle.css">
+    body.user-body
+        .user-body__inner
+            block header
+                .user-header
+                    .user-header__nav
+                        ul.user-header__col
+                                li.user-header__item: a(href="/admin") Admin Area
+                                li.user-header__item: a(href="/users") User Area
+                                li.user-header__item: a(href="/") Home
+
+                        ul.user-header__col
+                            if (user)
+                                +avatarDisplay()
+                                li.user-header__item: a(href="/users/dashboard") Account #{user.isAdmin ? `(admin)` : ''}
+                                li.user-header__item: a(href='/users/board') The Board 
+                                li.user-header__item: a(href='/users/wall') The Wall
+                                li.user-header__item: a(href="/logout") Log out 
+                            else
+                                li.user-header__item: a(href="/register") Register
+                                li.user-header__item: a(href="/login") Log in
+
+            block messages
+                if locals.flashes
+                    .inner
+                        .flash-messages
+                            - const categories = Object.keys(locals.flashes)
+                            each category in categories
+                                each message in flashes[category]
+                                    .flash(class=`flash--${category}`)
+                                        p.flash__text!= message
+                                        button.flash__remove(onClick="this.parentElement.remove()") &times;
+            block content
+
+            block footer
+                if user
+                    .user-footer
+                        .user-footer__inner
+                            p.user-footer__element Signed in as <span class="admin-footer__name">#{user.name}</span>.
+        
+            block scripts 
+                script(src="/temp/scripts/main.bundle.js")
+                script(src="/socket.io/socket.io.js")
+                script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")

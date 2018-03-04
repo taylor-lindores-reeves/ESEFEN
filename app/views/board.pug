@@ -1,6 +1,5 @@
-extends ./layouts/default
+extends ./layouts/user
 block content
-    h2 Hi
     each user in users
         h1(id="simple" class=`${user._id}`)= `Name: ${user.name}, Email: ${user.email}`
             ul(id="attributes" style="width: 100%; text-align: center;")

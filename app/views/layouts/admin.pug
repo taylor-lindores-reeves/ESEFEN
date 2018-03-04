@@ -3,13 +3,23 @@ doctype html
 html(lang="en")
     head
         block head
-            title Dot App
+            title Admin Dashboard
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <link rel="stylesheet" href="/temp/styles/styles.bundle.css">
     body
         block header
+            .admin-header
+                .admin-header__nav
+                    ul.admin-header__col
+                        each item in h.adminNav
+                            if item.label
+                                li.admin-header__item: a(href=`${item.href}`)= item.label
+                    ul.admin-header__col
+                        each item in h.adminNav
+                            if item.icon
+                                li.admin-header__item: a(href=`${item.href}`): img(src=`${item.icon}` width="16")
 
         block messages
             if locals.flashes
@@ -23,5 +33,12 @@ html(lang="en")
                                     button.flash__remove(onClick="this.parentElement.remove()") &times;
         block content
 
-        block scripts 
+        block footer
+            if user
+                .admin-footer
+                    .admin-footer__inner
+                        p.admin-footer__element Signed in as <span class="admin-footer__name">#{user.name}</span>.
+
+        block scripts
+            script(src="/temp/scripts/main.bundle.js")
             script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")

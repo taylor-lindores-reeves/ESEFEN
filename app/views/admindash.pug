@@ -1,0 +1,22 @@
+extends ./layouts/admin
+block content
+    if user.isAdmin
+        if id === 'welcome'
+            h1 Welcome
+        
+        if id === 'displayUsers'
+            form(method='post' action='/admin/verify')
+                h1 Verify Users
+                each user in users
+                    ul
+                        if !user.isVerified && !user.isAdmin
+                            li= `Name: ${user.name}, Email: ${user.email}, Verified: ${user.isVerified}`
+                                button(type="submit", name="verify" value=`${user.email}`) Verify User
+
+            form(method='post' action='/admin/delete')
+                h1 Delete Users
+                each user in users
+                    ul
+                        if user.isVerified && !user.isAdmin
+                            li= `Name: ${user.name}, Email: ${user.email}`
+                                button(type="submit", name="delete" value=`${user.email}`) Delete User

@@ -1,5 +1,4 @@
 mixin loginForm()
-
     .auth-wrapper
         .auth-box
             .auth-box__inner
@@ -19,4 +18,8 @@ mixin loginForm()
                     button(type="submit").auth-btn Sign In
                     
         .auth-footer
-            p Don'y have an account? <a href="/register"> Register Now</a>
+            p Don't have an account? <a href="/register"> Register Now</a>
+
+        p= locals.messages
+
+                    

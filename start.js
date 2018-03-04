@@ -8,15 +8,13 @@ mongoose.connection.on('error', error => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${error.message}`); // tells you whether or not the connection to mongodb was successful
 });
 
-require('./app/models/User');
-require('./app/models/Verification');
+require('./app/entities/user/user.model');
+require('./app/entities/admin/verification.model');
 
 const app = require('./app/server.js');
 
 const server = require('http').Server(app); 
 const io = require('socket.io', {'forceNew':true})(server);
-
-// admin namespace
 
 const room = io.of('/board');
 const connections = [];
@@ -62,3 +60,6 @@ server.listen(app.get('port'), () => {
 // STYLE
 // 1. style the header
 // 2. use res.locals to display stuff
+// User registers and upon registering is asked for email address of administrator. 
+// This creates a connection between admin and user. Once user is verified by admin, 
+// there is a link between the admin who verified and therefore only these users are displayed on board.

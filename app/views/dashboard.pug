@@ -1,5 +1,0 @@
-extends ./layouts/default
-block content
-    form(action="/users/photo" method="post" enctype="multipart/form-data")
-        input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
-        input(type="submit" value="Update Photo")

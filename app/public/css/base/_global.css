@@ -1,20 +1,45 @@
 @font-face {
-  font-family: "Montserrat";
-  src: url("../../fonts/montserrat-bold-webfont.woff2") format("woff2"),
-    url("../../fonts/montserrat-bold-webfont.woff") format("woff");
+  font-family: "Raleway";
+  src: url("../../Raleway-Black.ttf") format("ttf"),
+    url("../../Raleway-BlackItalic.ttf") format("ttf"),
+    url("../../Raleway-Bold.ttf") format("ttf"),
+    url("../../Raleway-BoldItalic.ttf") format("ttf"),
+    url("../../Raleway-ExtraBold.ttf") format("ttf"),
+    url("../../Raleway-ExtraBoldItalic.ttf") format("ttf"),
+    url("../../Raleway-ExtraLight.ttf") format("ttf"),
+    url("../../Raleway-ExtraLightItalic.ttf") format("ttf"),
+    url("../../Raleway-Italic.ttf") format("ttf"),
+    url("../../Raleway-Light.ttf") format("ttf"),
+    url("../../Raleway-LightItalic.ttf") format("ttf"),
+    url("../../Raleway-Medium.ttf") format("ttf"),
+    url("../../Raleway-MediumItalic.ttf") format("ttf"),
+    url("../../Raleway-Regular.ttf") format("ttf"),
+    url("../../Raleway-SemiBold.ttf") format("ttf"),
+    url("../../Raleway-SemiBoldItalic.ttf") format("ttf"),
+    url("../../Raleway-Thin.ttf") format("ttf"),
+    url("../../Raleway-ThinItalic.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Pacifico";
-  src: url("../../fonts/pacifico.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
+html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #5f4b8b;
+  height: 100%;
+  background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+  font-family: "Raleway";
+  font-weight: 900;
+}
+
+.user-body {
+  background: linear-gradient(to bottom, #ffffff, #e5e5e5);
+
+  &__inner {
+    padding-top: 40px;
+  }
+}
+
+a {
+  text-decoration: none;
 }

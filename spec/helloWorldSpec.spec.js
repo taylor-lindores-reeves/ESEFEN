@@ -10,11 +10,7 @@ describe("Hello World Server", function() {
                 done();
             });
         });
-        it("returns Hello World", function(done) {
-            request.get(base_url, function(error, response, body) {
-                expect(body).toBe("Hello World!");
-                done();
-            });
-        });
     });
+
+    
 });
